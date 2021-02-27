@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.anupkumarpanwar.scratchview2.R;
 import com.anupkumarpanwar.utils.BitmapUtils;
 
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -134,6 +136,8 @@ public class ScratchView extends View {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void init() {
 
+        this.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+
         mTouchPath = new Path();
 
         mErasePaint = new Paint();
@@ -202,6 +206,7 @@ public class ScratchView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mScratchBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        mScratchBitmap.eraseColor(Color.TRANSPARENT);
         mCanvas = new Canvas(mScratchBitmap);
 
         Rect rect = new Rect(0, 0, getWidth(), getHeight());
@@ -213,7 +218,7 @@ public class ScratchView extends View {
 
         mGradientBgPaint.setShader(new LinearGradient(0, 0, 0, getHeight(), startGradientColor, endGradientColor, Shader.TileMode.MIRROR));
 
-        mCanvas.drawRect(rect, mGradientBgPaint);
+        //mCanvas.drawRect(rect, mGradientBgPaint);
         mDrawable.draw(mCanvas);
 //        Toast.makeText(mContext, String.valueOf(getWidth()), Toast.LENGTH_LONG).show();
     }
