@@ -24,7 +24,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.anupkumarpanwar.scratchview2.R;
 import com.anupkumarpanwar.utils.BitmapUtils;
 
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
